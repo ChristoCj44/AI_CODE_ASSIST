@@ -1,9 +1,14 @@
-from pydantic import BaseModel
+from pydantic_settings import BaseSettings
 
 
-class Settings(BaseModel):
-    APP_NAME: str = "AI Code Assist"
+class Settings(BaseSettings):
+    APP_NAME: str = "RepoPilot AI"
     VERSION: str = "1.0.0"
+
+    DATABASE_URL: str = "sqlite:///./repopilot.db"
+
+    class Config:
+        env_file = ".env"
 
 
 settings = Settings()

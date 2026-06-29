@@ -1,22 +1,11 @@
 from fastapi import FastAPI
 
-from app.config import settings
+from app.db.database import engine
 
-app = FastAPI(
-    title=settings.APP_NAME,
-    version=settings.VERSION,
-)
-
-
-@app.get("/")
-def root():
-    return {
-        "message": "AI Code Assist Backend Running"
-    }
-
+app = FastAPI()
 
 @app.get("/health")
 def health():
     return {
-        "status": "healthy"
+        "database": str(engine.url)
     }
